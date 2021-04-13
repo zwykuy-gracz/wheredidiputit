@@ -20,6 +20,6 @@ from where import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', views.home, name="home"),
     path('where/', include('where.urls')),
 ]
