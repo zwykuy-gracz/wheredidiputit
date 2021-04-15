@@ -8,7 +8,7 @@ from .models import Item
 #     return render(request, "landing.html")
 
 def home(request):
-    return render(request, "login.html")
+    return render(request, "home.html")
 
 @login_required
 def index(request):

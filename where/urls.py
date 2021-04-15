@@ -5,5 +5,5 @@ app_name = "where"
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('new-item', views.new_item, name='new-item'),
+    path('new-item/', views.new_item, name='new-item'),
 ]
