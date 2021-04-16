@@ -14,7 +14,7 @@ def login_view(request):
         login(request, user)
         if next:
             return redirect(next)
-        return redirect('/')
+        return redirect('/list/')
     context = {
         'form': form
     }
@@ -38,3 +38,7 @@ def register_view(request):
         'form': form
     }
     return render(request, "registration/signup.html", context)
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')

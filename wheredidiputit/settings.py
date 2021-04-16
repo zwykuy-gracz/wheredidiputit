@@ -39,6 +39,9 @@ INSTALLED_APPS = [
 
     'where',
     'accounts',
+
+    'crispy_forms',
+    "crispy_tailwind",
 ]
 
 MIDDLEWARE = [
@@ -122,3 +125,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = "/login"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"

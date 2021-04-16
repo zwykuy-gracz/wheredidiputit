@@ -46,5 +46,4 @@ class UserRegisterForm(forms.ModelForm):
         if email_qs.exists():
             raise forms.ValidationError(
                 "This email has already been registered")
-        return email
-        # return super(UserRegisterForm, self).clean(*args, **kwargs)
+        return super(UserRegisterForm, self).clean(*args, **kwargs)
