@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="max-w-lg mx-auto">
+<div class="max-w-lg mx-auto pt-5">
 	<h1>Login</h1>
 	<form method="POST">
 		{% csrf_token %}
@@ -14,6 +14,9 @@
 	</form>
 	<div class="mt-5 border-t border-gray-200 mt-5">
 		<a href="#" class="hover:text-blue-500">Forgot password?</a>
+	</div>
+	<div class="mt-5 border-t border-gray-200 mt-5">
+		<a href={% url 'signup' %} class="hover:text-blue-500">New here?</a>
 	</div>
 </div>
 

@@ -6,7 +6,7 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     place = models.CharField(max_length=100)
     info = models.TextField(null=True, blank=True)
-    time_added = models.DateField()
+    time_added = models.DateField(default=datetime.now, blank=True)
     last_edit = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):

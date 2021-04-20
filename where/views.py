@@ -1,14 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Item
+from .forms import ItemModelForm
 
-
-# def home(request):
-#     return render(request, "landing.html")
-
-def home(request):
-    return render(request, "home.html")
 
 @login_required
 def index(request):
@@ -18,5 +13,35 @@ def index(request):
     }
     return render(request, 'where/items_list.html', context)
 
+
 def new_item(request):
-    return render(request, "where/new_item.html")
+    form = ItemModelForm()
+    if request.method == 'POST':
+        print('creating new item')
+        form = ItemModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/list')
+    context = {
+        'form': ItemModelForm(),
+    }
+    return render(request, "where/new_item.html", context)
+
+def edit_item(request, pk):
+    item = Item.objects.get(id=pk)
+    form = ItemModelForm(instance=item)
+    if request.method == "POST":
+        form = ItemModelForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('/list')
+    context = {
+        "form": form,
+        "item": item,
+    }
+    return render(request, "where/edit_item.html", context)
+
+def delete_item(request, pk):
+    item = Item.objects.get(id=pk)
+    item.delete()
+    return redirect('/list')

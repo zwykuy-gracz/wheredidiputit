@@ -3,8 +3,9 @@
 
 {% block content %}
 
+
 <div class="max-w-lg mx-auto pt-5">
-<h1>add a new item</h1>
+<h1>Edit an item</h1>
 	<form method="post" action="">
 		{% csrf_token %}
 		{{ form|crispy }}
@@ -12,9 +13,14 @@
 			Submit
 		</button>
 	</form>
-<div class="mt-5 border-t border-gray-200 mt-5">
-	<a href={% url 'where:index' %} class="hover:text-blue-500">Go back</a>
-</div>
+	<div class="mt-5 border-t border-gray-200 mt-5">
+		<a href={% url 'where:index' %} class="hover:text-blue-500">Go back</a>
+	</div>
+	<a href={% url 'where:delete-item' item.pk %}>
+		<button type="submit" class="w-full text-white bg-red-500 hover:bg-blue-600 px-3 py-1 mt-5 rounded-md">
+				Delete
+		</button>
+	</a>
 </div>
 
 {% endblock content %}
