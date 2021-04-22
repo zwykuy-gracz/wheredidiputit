@@ -1,9 +1,15 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import Item
 from .forms import ItemModelForm
 
+
+class ItemListView(ListView):
+    template_name = 'where/items_list.html'
+    queryset = Item.objects.all()
+    context_object_name = "item"
 
 @login_required
 def index(request):
@@ -23,7 +29,7 @@ def new_item(request):
             form.save()
             return redirect('/list')
     context = {
-        'form': ItemModelForm(),
+        'form': form,
     }
     return render(request, "where/new_item.html", context)
 
